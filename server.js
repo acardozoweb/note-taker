@@ -5,8 +5,8 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const apiRoutes = require('./routes/apiRoutes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes/htmlRoutes');
+const apiRoutes = require('./Routes/apiRoutes/apiRoutes');
+const htmlRoutes = require('./Routes/htmlRoutes/htmlRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
