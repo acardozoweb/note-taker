@@ -1,5 +1,6 @@
 ////////// DEPENDENCIES //////////
 
+const { Router } = require('express');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const router = require('express').Router();
@@ -40,3 +41,5 @@ router.delete('./api/notes/:id', (req, res) => {
     // return to client
     return res.json(newNotes);
 });
+
+module.exports = router;
