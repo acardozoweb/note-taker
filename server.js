@@ -4,6 +4,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = 3001;
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Middleware for accessing CSS/JS in Public folder
 app.use(express.static('public'));
+
 
 
 ////////// API ROUTES //////////
@@ -29,6 +31,8 @@ app.post('/api/notes', (req, res) => {
     let newNote = req.body;
     // create variable from db.json
     let notes = JSON.parse(fs.readFileSync('./data/db.json', 'utf8'));
+    // generate unique id with uuid
+    newNote.id = uuidv4();
     // push newNote to notes variable
     notes.push(newNote);
     // put notes variable in db.json file
@@ -60,8 +64,6 @@ app.get('/notes', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
-
-
 
 ////////// LISTENER //////////
 
