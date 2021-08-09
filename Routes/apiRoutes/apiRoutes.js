@@ -1,19 +1,20 @@
 ////////// DEPENDENCIES //////////
 
-
-
+const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+const router = require('express').Router();
 
 
 ////////// API ROUTES //////////
 
-app.get('/api/notes', (req, res) => {
+router.get('/api/notes', (req, res) => {
     // create variable from db.json
     let notes = JSON.parse(fs.readFileSync('./data/db.json', 'utf8'));
     // return to client
     return res.json(notes);
 });
 
-app.post('/api/notes', (req, res) => {
+router.post('/api/notes', (req, res) => {
     let newNote = req.body;
     // create variable from db.json
     let notes = JSON.parse(fs.readFileSync('./data/db.json', 'utf8'));
@@ -27,7 +28,7 @@ app.post('/api/notes', (req, res) => {
     return res.json(notes);
 });
 
-app.delete('./api/notes/:id', (req, res) => {
+router.delete('./api/notes/:id', (req, res) => {
     // create variable to delete
     let deleteNote = req.params.id;
     // create variable from db.json
