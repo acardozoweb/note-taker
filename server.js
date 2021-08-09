@@ -9,20 +9,19 @@ const apiRoutes = require('./routes/apiRoutes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes/htmlRoutes');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Set up Express to parse data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// connect to route folders
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
 
 // Middleware for accessing CSS/JS in Public folder
 app.use(express.static('public'));
 
-
+// connect to route folders
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 
 ////////// LISTENER //////////
