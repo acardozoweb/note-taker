@@ -7,37 +7,37 @@ const fs = require('fs');
 
 ////////// API ROUTES //////////
 
-router.get('/api/notes', (req, res) => {
-    // create variable from db.json
+router.get('/notes', (req, res) => {
+    //creates variable from db.json file
     let notes = JSON.parse(fs.readFileSync('./data/db.json', 'utf8'));
-    // return to client
+    //return notes to client
     return res.json(notes);
 });
 
-router.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
     let newNote = req.body;
-    // create variable from db.json
-    let notes = JSON.parse(fs.readFileSync('./data/db.json', 'utf8'));
-    // generate unique id with uuid
+    //generate unique id with uuid package
     newNote.id = uuidv4();
-    // push newNote to notes variable
+    //create variable from db.json file
+    let notes = JSON.parse(fs.readFileSync('./data/db.json', 'utf8'));
+    //push newNote to notes variable 
     notes.push(newNote);
-    // put notes variable in db.json file
+    //write notes variable to db.json file
     fs.writeFileSync('./data/db.json', JSON.stringify(notes));
-    // return to client
+    //return notes to client
     return res.json(notes);
 });
 
-router.delete('./api/notes/:id', (req, res) => {
-    // create variable to delete
+router.delete('/notes/:id', (req, res) => {
+    //creates variable from file to delete
     let deleteNote = req.params.id;
-    // create variable from db.json
+    //creates variable from db.json file
     let notes = JSON.parse(fs.readFileSync('./data/db.json', 'utf8'));
-    // filter by id to make newNotes array
-    let newNotes = notes.filter(note => note.id !== deleteNote);
-    // put newNotes array into db.json
+    //removes/filters deleteFile from notes
+    let newNotes = notes.filter(file => file.id !== deleteNote);
+    //write notes variable to db.json file
     fs.writeFileSync('./data/db.json', JSON.stringify(newNotes));
-    // return to client
+    //return notes to client
     return res.json(newNotes);
 });
 
