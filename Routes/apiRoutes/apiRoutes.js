@@ -26,7 +26,7 @@ router.post('/notes', (req, res) => {
     //generate unique id with uuid package
     newNote.id = uuidv4();
     //create variable from db.json file
-    let notes = JSON.parse(fs.readFileSync('./Data/db.json', 'utf8'));
+    let notes = (fs.writeFileSync('./Data/db.json', 'utf8'));
     //push newNote to notes variable 
     notes.push(newNote);
     //write notes variable to db.json file
