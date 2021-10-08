@@ -12,14 +12,23 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 ////////// API ROUTES //////////
 
-router.get('/notes', async (req, res) => {
+router.get('/notes', (req, res) => {
     //creates variable from db.json file
-    let notes = await readFileAsync('./Data/db.json', 'utf8');
+    let notes = JSON.parse(fs.writeFileSync('./Data/db.json', 'utf8'));
     console.log('notes', notes);
     console.log('notesType', typeOf(notes));
     //return notes to client
     return res.json(notes);
 });
+
+// router.get('/notes', async (req, res) => {
+//     //creates variable from db.json file
+//     let notes = await readFileAsync('./Data/db.json', 'utf8');
+//     console.log('notes', notes);
+//     console.log('notesType', typeOf(notes));
+//     //return notes to client
+//     return res.json(notes);
+// });
 
 router.post('/notes', (req, res) => {
     let newNote = req.body;
