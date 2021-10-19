@@ -25,6 +25,13 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
+
+// where activeNote's value assigned?
+// what value is assigned to it
+// confirm where it's being sent to, what are we doing with this value?
+// ensure this value is stored in db.json, if it's not already being sent there
+// making sure the PUT request is sending the value to db.json
+
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',

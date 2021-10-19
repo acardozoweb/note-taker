@@ -24,18 +24,18 @@ const writeFileAsync = util.promisify(fs.writeFile);
 router.get('/notes', async (req, res) => {
     //creates variable from db.json file
     let notes = await readFileAsync('./Data/db.json', 'utf8');
-    console.log('notes', notes);
-    console.log('notesType', typeOf(notes));
+    await console.log('notes', notes);
+    await console.log('notesType', typeOf(notes));
     //return notes to client
     return res.json(notes);
 });
 
-router.post('/notes', (req, res) => {
+router.post('/note', (req, res) => {
     let newNote = req.body;
     //generate unique id with uuid package
     newNote.id = uuidv4();
     //create variable from db.json file
-    let notes = (fs.writeFileSync('./Data/db.json', 'utf8'));
+    let notes = (fs.writeFileSync('./Data/db.json', JSON.stringify()));
     //push newNote to notes variable 
     notes.push(newNote);
     //write notes variable to db.json file
